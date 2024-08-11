@@ -92,7 +92,7 @@ st.sidebar.success("Select a page above.")
 avatar_asistente = Image.open("images/icon_bot.png")
 avatar_usuario = Image.open("images/icon_developer.png")
 
-dashboard_path = "https://queria.streamlit.app/Dashboard"
+dashboard_path = "https://queria.streamlit.app/Informe"
 
 
 # Creamos los títulos de la app
