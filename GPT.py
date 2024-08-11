@@ -24,8 +24,8 @@ warnings.filterwarnings(
 
 
 # Sacamos la API KEY de OpenAI
-os.environ["OPENAI_API_KEY"] = str(env.QUERIA_KEY)
-# os.environ["OPENAI_API_KEY"] = str(st.secrets["KEY_QUERIA"])
+# os.environ["OPENAI_API_KEY"] = str(env.QUERIA_KEY)
+os.environ["OPENAI_API_KEY"] = str(st.secrets["KEY_QUERIA"])
 
 
 # Cargamos la BBDD con langchain
@@ -111,8 +111,8 @@ st.markdown(f'''Por favor, hay una serie de reglas que debes cumplir:
 ***Si realizas todos los pasos, podrás consultar de manera éxitosa a la BBDD, ¡Muchas gracias por tu comprensión!***''')
 
 
-api_key = str(env.QUERIA_KEY)
-# api_key = str(st.secrets["KEY_QUERIA"])
+# api_key = str(env.QUERIA_KEY)
+api_key = str(st.secrets["KEY_QUERIA"])
 client = OpenAI(api_key=api_key)
 
 
