@@ -29,7 +29,7 @@ os.environ["OPENAI_API_KEY"] = str(st.secrets["KEY_QUERIA"])
 
 
 # Cargamos la BBDD con langchain
-db = SQLDatabase.from_uri("sqlite:///queria.db")
+db = SQLDatabase.from_uri("sqlite:///querias.db")
 
 # Creamos el LLM
 llm = ChatOpenAI(temperature=0, model='gpt-3.5-turbo')
