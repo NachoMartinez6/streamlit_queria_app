@@ -73,6 +73,10 @@ def talk_to_sql(prompt):
         resultado = "No puedo realizar una consulta SQL válida con la información proporcionada. Por favor proporcione una pregunta que pueda ser traducida a lenguaje SQL."
     return resultado
 
+
+
+
+
 # def talk_to_sql(prompt):
 #     consulta = template_prompt.format(question=prompt)
 #     respuesta = cadena.invoke(consulta)
@@ -81,8 +85,8 @@ def talk_to_sql(prompt):
 
 
 
-resultado = talk_to_sql("Dime cuantas tablas tiene la BBDD?")
-print(resultado)
+# resultado = talk_to_sql("Dime cuantas tablas tiene la BBDD?")
+# print(resultado)
 
 
 # ################## FRONTEND
