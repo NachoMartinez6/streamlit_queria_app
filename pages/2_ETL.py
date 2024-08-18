@@ -1,6 +1,5 @@
 import streamlit as st
 
-# st.write("Hello World")
 
 st.sidebar.success("Select a page above.")
 image_folder = "images/ETL_images"
@@ -9,17 +8,12 @@ image_folder = "images/ETL_images"
 
 
 st.markdown('<h1> Proyecto Quer<span style="color:dodgerblue">IA</span> - ETL ', unsafe_allow_html=True)
-# st.markdown(f'<h1>Data Analysis: <span style="color:dodgerblue">Situación del mercado energético UE</span>', unsafe_allow_html=True)
-
-st.markdown("""# Proyecto QuerIA
-
+st.markdown("""
 ## 1. Extracción de nuestra DATA
 
 **Paso previo:** Recogida por parte de nuestro analista de los registros correspondientes a datos de electricidad, gas y otros aspectos del panorama energetico dentro de la Unión europea.
 
 **Objetivo:** En este apartado se pretende subir los 3 datasets crudos, concatenarlos en un unico dataset final energy_dataset y transformar los datos, ya que el energy_dataset se cargará al servidor en la nube y tiene que ser facilmente interpretable por la IA para transformar nuestra consulta a lenguaje SQL y devolver una respuesta clara y precisa.""")
-
-
 
     
 code = """ 
@@ -159,7 +153,6 @@ energy_dataset
 st.code(code, language="python")
 st.image(f"{image_folder}/4_ETL.png")
 
-# Renombramos los encabezados para que la intepretación de las columnas por la IA sea mas sencilla
 
 code = """energy_dataset.rename(columns={
     'TIME_PERIOD': 'time_period',
@@ -174,9 +167,6 @@ energy_dataset
 st.code(code, language="python")
 st.image(f"{image_folder}/5_ETL.png")
 
-
-## POR AQUÍ VAMOS.
-## FALTARIAN LAS IMAGENES
 
 code = """
 # Traducimos los códigos los valores unicos de cada columna para que sea facilmente comprensible para la IA
