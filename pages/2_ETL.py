@@ -157,7 +157,7 @@ st.code(code, language="python")
 
 # Renombramos los encabezados para que la intepretación de las columnas por la IA sea mas sencilla
 
-code = """ energy_dataset.rename(columns={
+code = """energy_dataset.rename(columns={
     'TIME_PERIOD': 'time_period',
     'geo': 'country', 
     'product': 'data_type',
@@ -174,10 +174,53 @@ st.code(code, language="python")
 ## POR AQUÍ VAMOS.
 ## FALTARIAN LAS IMAGENES
 
+code = """
+# Traducimos los códigos los valores unicos de cada columna para que sea facilmente comprensible para la IA
+
+# valores de pais
+# para consultar valores unicos usamos: energy_dataset['country'].unique()
+energy_dataset['country'] = energy_dataset['country'].replace({
+    'DE': 'Germany',
+    'ES': 'Spain',
+    'FR': 'France',
+    'IT': 'Italy',
+    'PT': 'Portugal'})
+
+# valores de tipo de dato (tipo de dato que mostramos, si es balance energético, precio de gas o de electricidad)
+# para consultar valores unicos usamos: energy_dataset['product'].unique()
+energy_dataset['data_type'] = energy_dataset['data_type'].replace({
+    6000: 'Electricity price',
+    4100: 'Gas price'})
+
+# valores de categoría energética
+energy_dataset['energy_category']=energy_dataset['energy_category'].replace({
+    'EXP': 'Exports',
+    'GAE': 'Gross available energy', 
+    'GIC': 'Gross inland consumption',
+    'IMP': 'Imports',
+    'NRGSUP': 'Total energy supply',
+    'PPRD': 'Primary production'})
+
+# valores de clase de producto energético
+energy_dataset['energy_product_class']=energy_dataset['energy_product_class'].replace({
+    'C0000X0350-0370': 'Solid fossil fuels', 
+    'G3000': 'Natural gas', 
+    'N900H': 'Nuclear heat', 
+    'O4000XBIO': 'Oil and petroleum products (excluding biofuel portion)', 
+    'RA000': 'Renewables and biofuels',
+    'RA420': 'Solar photovoltaic', 
+    'TOTAL': 'Total'})
+
+# valores de tipo de cliente
+energy_dataset['costumer']=energy_dataset['costumer'].replace({
+    'MSHH':'Medium size households',
+    'MSIND':'Non-household, medium size consumers'})
 
 
-
-
+# dataframe final limpio:
+energy_dataset
+"""
+st.code(code, language="python")
 
 
 st.markdown("""## 3. Carga de la DATA
@@ -185,7 +228,12 @@ st.markdown("""## 3. Carga de la DATA
 En esta etapa, guardaremos el dataset final en un fichero .csv dentro del mismo directorio que será cargado en la BBDD para la posterior interacción con la aplicación de IA.
 """)
 
+code = """
+# Carga de datos
+energy_dataset.to_csv('pages/energy_dataset.csv', index=False, sep=';', encoding='utf-8')
 
-
-
-
+# Comprobamos que se guardo y se lee correctamente
+df=pd.read_csv('data/energy_dataset.csv', sep=';')
+df
+"""
+st.code(code, language="python")
