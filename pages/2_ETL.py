@@ -3,7 +3,7 @@ import streamlit as st
 # st.write("Hello World")
 
 st.sidebar.success("Select a page above.")
-
+image_folder = "images/ETL_images"
 
 ############################## 1. Extracción de nuestra DATA
 
@@ -44,8 +44,7 @@ electricity_dataset.rename(columns={'OBS_VALUE': 'electricity_price_eur/kWh'}, i
 electricity_dataset
 """
 st.code(code, language="python")
-
-
+st.image(f"{image_folder}/1_ETL.png")
 
 
 
@@ -58,6 +57,7 @@ gas_dataset.rename(columns={'OBS_VALUE': 'gas_price_eur/GJ'}, inplace=True)
 gas_dataset
 """
 st.code(code, language="python")
+st.image(f"{image_folder}/2_ETL.png")
 
 
 code = """ 
@@ -69,7 +69,7 @@ balance_dataset.rename(columns={'OBS_VALUE': 'energy_GWh'}, inplace=True)
 balance_dataset
 """
 st.code(code, language="python")
-
+st.image(f"{image_folder}/3_ETL.png")
 
 
 
@@ -153,7 +153,7 @@ energy_dataset = energy_dataset[energy_dataset['geo'] != 'EU27_2020']
 energy_dataset
 """
 st.code(code, language="python")
-
+st.image(f"{image_folder}/4_ETL.png")
 
 # Renombramos los encabezados para que la intepretación de las columnas por la IA sea mas sencilla
 
@@ -168,7 +168,7 @@ code = """energy_dataset.rename(columns={
 energy_dataset
 """
 st.code(code, language="python")
-
+st.image(f"{image_folder}/5_ETL.png")
 
 
 ## POR AQUÍ VAMOS.
@@ -221,7 +221,7 @@ energy_dataset['costumer']=energy_dataset['costumer'].replace({
 energy_dataset
 """
 st.code(code, language="python")
-
+st.image(f"{image_folder}/6_ETL.png")
 
 st.markdown("""## 3. Carga de la DATA
 
@@ -237,7 +237,4 @@ df=pd.read_csv('data/energy_dataset.csv', sep=';')
 df
 """
 st.code(code, language="python")
-
-
-image_folder = "images/ETL_images"
 st.image(f"{image_folder}/7_ETL.png")
