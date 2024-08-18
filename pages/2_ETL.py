@@ -7,7 +7,7 @@ image_folder = "images/ETL_images"
 ############################## 1. Extracción de nuestra DATA
 
 
-st.markdown('<h1> Proyecto Quer<span style="color:dodgerblue">IA</span> - ETL ', unsafe_allow_html=True)
+st.markdown('<h1>Quer<span style="color:dodgerblue">IA</span> - ETL ', unsafe_allow_html=True)
 st.markdown("""
 ## 1. Extracción de nuestra DATA
 
