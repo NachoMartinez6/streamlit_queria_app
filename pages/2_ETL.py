@@ -237,3 +237,5 @@ df=pd.read_csv('data/energy_dataset.csv', sep=';')
 df
 """
 st.code(code, language="python")
+
+st.image("images/ETL_images/7_ETL.PONG")
