@@ -5,6 +5,7 @@ import streamlit as st
 st.sidebar.success("Select a page above.")
 
 
+############################## 1. Extracción de nuestra DATA
 
 st.markdown("""# Proyecto QuerIA
 
@@ -68,4 +69,123 @@ balance_dataset.rename(columns={'OBS_VALUE': 'energy_GWh'}, inplace=True)
 balance_dataset
 """
 st.code(code, language="python")
+
+
+
+
+############################## 2. Tranformación de nuestra DATA
+
+st.markdown("""## 2. Tranformación de nuestra DATA
+
+Como en muchos casos de un proyecto de analitica de datos, los datos iniciales vienen con formatos distintos, por los que será necesario una transformación de los datos para que estos tengan el mismo formato y nos sean de utilidad.
+
+**Tarea:** Para unir los 3 datasets en uno único (energy_dataset) tenemos que igualar el numero de columnas y completar los datos con Nulos
+""")
+
+
+
+
+
+code = """ 
+# Filtramos las columnas de interés para cada dataset
+electricity_dataset=electricity_dataset[['TIME_PERIOD','geo','product','indic_en', 'electricity_price_eur/kWh']]
+gas_dataset=gas_dataset[['TIME_PERIOD','geo','product','indic_en','gas_price_eur/GJ']]
+balance_dataset=balance_dataset[['TIME_PERIOD','geo','nrg_bal','siec','energy_GWh']]
+
+# Creamos columnas extras con valores nulos para cada dataset, para que los 3 dataset contengan las mismas columnas
+electricity_dataset['nrg_bal']=None
+electricity_dataset['siec']=None
+electricity_dataset['gas_price_eur/GJ']=None
+electricity_dataset['energy_GWh']=None
+
+gas_dataset['nrg_bal']=None
+gas_dataset['siec']=None
+gas_dataset['electricity_price_eur/kWh']=None
+gas_dataset['energy_GWh']=None
+
+balance_dataset['product']='Energy balance'
+balance_dataset['indic_en']=None
+balance_dataset['electricity_price_eur/kWh']=None
+balance_dataset['gas_price_eur/GJ']=None
+
+# Reordenamos columnas para que todos los df tengan el mismo formato
+electricity_dataset=electricity_dataset[
+    ['TIME_PERIOD',
+     'geo',
+     'product',
+     'nrg_bal',
+     'siec',
+     'indic_en',
+     'energy_GWh', 
+     'electricity_price_eur/kWh', 
+     'gas_price_eur/GJ']
+]
+gas_dataset=gas_dataset[
+    ['TIME_PERIOD',
+     'geo',
+     'product',
+     'nrg_bal',
+     'siec',
+     'indic_en',
+     'energy_GWh', 
+     'electricity_price_eur/kWh', 
+     'gas_price_eur/GJ']
+]
+balance_dataset=balance_dataset[
+    ['TIME_PERIOD',
+     'geo',
+     'product',
+     'nrg_bal',
+     'siec',
+     'indic_en',
+     'energy_GWh', 
+     'electricity_price_eur/kWh', 
+     'gas_price_eur/GJ']
+]
+
+# Unimos los 3 dataset en un solo energy_dataset concatenando los valores (se suma el numero de filas)
+energy_dataset = pd.concat([electricity_dataset, gas_dataset, balance_dataset], ignore_index=True)
+
+# Eliminamos los datos de total Europeo del dataset ya que no son de interés en este caso
+energy_dataset = energy_dataset[energy_dataset['geo'] != 'EU27_2020']
+
+# Comprobamos que se ha concatenado correctamente
+energy_dataset
+"""
+st.code(code, language="python")
+
+
+# Renombramos los encabezados para que la intepretación de las columnas por la IA sea mas sencilla
+
+code = """ energy_dataset.rename(columns={
+    'TIME_PERIOD': 'time_period',
+    'geo': 'country', 
+    'product': 'data_type',
+    'nrg_bal': 'energy_category', 
+    'siec': 'energy_product_class', 
+    'indic_en': 'costumer'}, inplace=True)
+
+energy_dataset
+"""
+st.code(code, language="python")
+
+
+
+## POR AQUÍ VAMOS.
+## FALTARIAN LAS IMAGENES
+
+
+
+
+
+
+
+st.markdown("""## 3. Carga de la DATA
+
+En esta etapa, guardaremos el dataset final en un fichero .csv dentro del mismo directorio que será cargado en la BBDD para la posterior interacción con la aplicación de IA.
+""")
+
+
+
+
 
