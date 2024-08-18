@@ -238,4 +238,6 @@ df
 """
 st.code(code, language="python")
 
-st.image("images/ETL_images/7_ETL.PONG")
+
+image_folder = "images/ETL_images"
+st.image(f"{image_folder}/7_ETL.png")
