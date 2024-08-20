@@ -42,7 +42,7 @@ electricity_dataset.rename(columns={'OBS_VALUE': 'electricity_price_eur/kWh'}, i
 electricity_dataset
 """
 st.code(code, language="python")
-# st.image(f"{image_folder}/1_ETL.png")
+st.image(f"{image_folder}/1_ETL.png")
 
 
 
