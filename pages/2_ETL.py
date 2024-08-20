@@ -42,7 +42,7 @@ electricity_dataset.rename(columns={'OBS_VALUE': 'electricity_price_eur/kWh'}, i
 electricity_dataset
 """
 st.code(code, language="python")
-st.image(f"{image_folder}/1_ETL.png")
+# st.image(f"{image_folder}/1_ETL.png")
 
 
 
@@ -55,7 +55,7 @@ gas_dataset.rename(columns={'OBS_VALUE': 'gas_price_eur/GJ'}, inplace=True)
 gas_dataset
 """
 st.code(code, language="python")
-st.image(f"{image_folder}/2_ETL.png")
+# st.image(f"{image_folder}/2_ETL.png")
 
 
 code = """ 
@@ -67,7 +67,7 @@ balance_dataset.rename(columns={'OBS_VALUE': 'energy_GWh'}, inplace=True)
 balance_dataset
 """
 st.code(code, language="python")
-st.image(f"{image_folder}/3_ETL.png")
+# st.image(f"{image_folder}/3_ETL.png")
 
 
 
@@ -151,7 +151,7 @@ energy_dataset = energy_dataset[energy_dataset['geo'] != 'EU27_2020']
 energy_dataset
 """
 st.code(code, language="python")
-st.image(f"{image_folder}/4_ETL.png")
+# st.image(f"{image_folder}/4_ETL.png")
 
 
 code = """energy_dataset.rename(columns={
@@ -165,7 +165,7 @@ code = """energy_dataset.rename(columns={
 energy_dataset
 """
 st.code(code, language="python")
-st.image(f"{image_folder}/5_ETL.png")
+# st.image(f"{image_folder}/5_ETL.png")
 
 
 code = """
@@ -215,7 +215,7 @@ energy_dataset['costumer']=energy_dataset['costumer'].replace({
 energy_dataset
 """
 st.code(code, language="python")
-st.image(f"{image_folder}/6_ETL.png")
+# st.image(f"{image_folder}/6_ETL.png")
 
 st.markdown("""## 3. Carga de la DATA
 
@@ -231,4 +231,4 @@ df=pd.read_csv('data/energy_dataset.csv', sep=';')
 df
 """
 st.code(code, language="python")
-st.image(f"{image_folder}/7_ETL.png")
+# st.image(f"{image_folder}/7_ETL.png")
